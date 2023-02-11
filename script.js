@@ -68,6 +68,8 @@ function operate(firstOperand, secondOperand, operator){
     case "/":
       if (secondOperand === 0) return "LOL"
       return firstOperand / secondOperand;
+    case "%":
+      return firstOperand % secondOperand;
     default:
       return secondOperand;
   }
