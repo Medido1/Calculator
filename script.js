@@ -32,6 +32,15 @@ function handleBackSpace(){
   }
 }
 
+function handleDecimal(){
+  if (calculator.displayValue === "0"){
+    calculator.displayValue = "0.";
+  }
+  else if (!calculator.displayValue.includes(".")){
+    calculator.displayValue += ".";
+  }
+}
+
 updateDisplay();
 
 const buttons = document.querySelectorAll("td");
@@ -42,6 +51,12 @@ buttons.forEach(button => button.addEventListener("click", (e)=>{
    handleBackSpace();
    updateDisplay();
    return;
+  }
+
+  if (key.classList.contains("decimal")){
+    handleDecimal();
+    updateDisplay();
+    return;
   }
 
   inputDigit(key.textContent);
