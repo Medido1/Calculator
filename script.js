@@ -116,9 +116,19 @@ function removeColor(){
 
 updateDisplay();
 
-const buttons = document.querySelectorAll("td");
-buttons.forEach(button => button.addEventListener("click", (e)=>{
-  const key = e.target;
+function useCalculator(e){
+  let key;
+  if (e.type === "click"){
+    key = e.target;
+  }
+  else if (e.type === "keydown"){
+    let button = document.querySelector(`td[data-key="${e.keyCode}"]`);
+    if(button){
+      key = button;
+    }
+    else return;
+  }
+
 
   removeColor();
 
@@ -149,4 +159,8 @@ buttons.forEach(button => button.addEventListener("click", (e)=>{
 
   inputDigit(key.textContent);
   updateDisplay();
-}))
+}
+
+const buttons = document.querySelectorAll("td");
+buttons.forEach(button => button.addEventListener("click", useCalculator));
+window.addEventListener("keydown", useCalculator)
