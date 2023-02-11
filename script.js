@@ -108,13 +108,20 @@ function handleClear(){
   calculator.waitingForSecondOperand = false;
 }
 
+function removeColor(){
+  buttons.forEach(button => button.classList.remove("clicked"));
+}
+
 updateDisplay();
 
 const buttons = document.querySelectorAll("td");
 buttons.forEach(button => button.addEventListener("click", (e)=>{
   const key = e.target;
 
+  removeColor();
+
   if(key.classList.contains("operator")){
+    key.classList.add("clicked");
     handleOperator(key.textContent);
     updateDisplay();
     return;

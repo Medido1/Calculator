@@ -61,7 +61,6 @@ td img{
 }
 
 
-
 .decimal {
   background-color: #87CEEB;
 }
@@ -71,5 +70,9 @@ td img{
 }
 
 td:hover, td img:hover{
+  background-color: aliceblue;
+}
+
+.clicked {
   background-color: aliceblue;
 }
