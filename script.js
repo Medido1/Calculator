@@ -41,6 +41,13 @@ function handleDecimal(){
   }
 }
 
+function handleClear(){
+  calculator.displayValue = "0";
+  calculator.firstOperand = null;
+  calculator.operator = null;
+  calculator.waitingForSecondOperand = false;
+}
+
 updateDisplay();
 
 const buttons = document.querySelectorAll("td");
@@ -55,6 +62,12 @@ buttons.forEach(button => button.addEventListener("click", (e)=>{
 
   if (key.classList.contains("decimal")){
     handleDecimal();
+    updateDisplay();
+    return;
+  }
+
+  if (key.classList.contains("clear")){
+    handleClear();
     updateDisplay();
     return;
   }
