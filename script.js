@@ -22,12 +22,28 @@ function updateDisplay(){
   result.textContent = calculator.displayValue;
 }
 
+function handleBackSpace(){
+  const input = calculator.displayValue;
+  if (input.length < 2){
+    calculator.displayValue = "0";
+  }
+  else {
+    calculator.displayValue = input.substring(0, input.length-1);
+  }
+}
+
 updateDisplay();
 
 const buttons = document.querySelectorAll("td");
-buttons.forEach(button => button.addEventListener("click", ()=>{
- const key = button.textContent;
- 
-  inputDigit(key);
+buttons.forEach(button => button.addEventListener("click", (e)=>{
+  const key = e.target;
+  
+  if(key.classList.contains("backspace")){
+   handleBackSpace();
+   updateDisplay();
+   return;
+  }
+
+  inputDigit(key.textContent);
   updateDisplay();
 }))

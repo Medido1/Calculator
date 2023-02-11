@@ -11,6 +11,7 @@ body {
 
 table {
   display: flex;
+  justify-content: center;
   margin-top: 100px;
   display: flex;
   border: 2.5px solid black;
@@ -48,6 +49,7 @@ td img{
   margin-right: auto;
   width: 40px;
   height: 30px;
+  background-color: #B0E0E6;
 }
 
 .operator {
@@ -58,6 +60,8 @@ td img{
   background-color: #87CEFA;
 }
 
+
+
 .decimal {
   background-color: #87CEEB;
 }
@@ -66,6 +70,6 @@ td img{
   background-color: #B0C4DE;
 }
 
-td:hover{
+td:hover, td img:hover{
   background-color: aliceblue;
 }
