@@ -6,7 +6,13 @@ const calculator = {
 }
 
 function inputDigit(digit){
-  if (calculator.waitingForSecondOperand){
+  if (isNaN(calculator.displayValue)){
+    calculator.displayValue = digit;
+  }
+  else if (calculator.displayValue.length > 12 && calculator.waitingForSecondOperand === false){
+    return
+  }
+  else if (calculator.waitingForSecondOperand){
     calculator.displayValue = digit;
     calculator.waitingForSecondOperand = false;
   }
@@ -20,12 +26,19 @@ function inputDigit(digit){
 
 function handleOperator(nextOperator){
   const {displayValue, firstOperand, operator} = calculator;
+  if (calculator.displayValue === "LOL"){
+    calculator.displayValue = "0";
+    updateDisplay();
+    return;
+  }
   const input = parseFloat(displayValue);
   if (calculator.firstOperand === null && !isNaN(input)){
     calculator.firstOperand = input; 
   }
   else if (operator){
     const result = operate(firstOperand, input, operator);
+    const resultString = String(result)
+    const displayLength = resultString.length;
     if (isNaN(result)){
       calculator.displayValue = result;
       calculator.firstOperand = null;
@@ -36,10 +49,13 @@ function handleOperator(nextOperator){
       calculator.displayValue = Math.round(result * 10000) / 10000;
       calculator.firstOperand = Math.round(result * 10000) / 10000;
     }
-  }
+    
+    }
   calculator.waitingForSecondOperand = true;
   calculator.operator = nextOperator;
 }
+
+
 
 function operate(firstOperand, secondOperand, operator){
   switch(operator){
